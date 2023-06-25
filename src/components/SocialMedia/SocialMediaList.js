@@ -5,10 +5,6 @@ import SOCIAL_MEDIA_TYPES from "../../constants/index";
 import getIcon from "../../utils/getIcon";
 import {
   Button,
-  Grid,
-  Item,
-  List,
-  ListItem,
   Table,
   TableBody,
   TableContainer,
@@ -27,8 +23,6 @@ const SocialMediaList = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const {
-    onAddSocialMedia,
-    onEditSocialMedia,
     onRemoveSocialMedia,
     onSelectedTask,
     onList,
@@ -39,22 +33,16 @@ const SocialMediaList = () => {
 
   const {
     onCollapseOpen,
-    onCollapseClose,
-    toggleOpenForm,
     getCollapseOpen: collapseOpen,
   } = useCollapse();
 
   const theme = useTheme();
-
-  const [data, setData] = useState(...socialMedia);
-
+  
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
       const result = await getSocialMedia();
-      console.log("result", result);
       setIsLoading(false);
-      // const arr = [{a:1}, {a:2}, {a:3}]
       onList(result);
     }
     fetchData();
@@ -62,7 +50,6 @@ const SocialMediaList = () => {
 
   const editHandler = (data) => {
     onCollapseOpen();
-    console.log("data", data);
     onSelectedTask(data);
   };
 
@@ -70,13 +57,6 @@ const SocialMediaList = () => {
     onRemoveSocialMedia(data);
     removeSocialMedia(data);
   };
-
-  console.log("selectedSocialMedia", selectedSocialMedia);
-
-  console.log("socialMedia", socialMedia);
-
-  // const socialMediaLists = [...socialMedia[0], socialMedia]
-  // console.log("socialList", socialMediaLists)
 
   return (
     <StyledCard>

@@ -18,7 +18,6 @@ import { ColorModeContext, useMode } from "./../../theme/index";
 const SettingComponent = () => {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
-  //   const [colorMode] = useMode()
   const colorMode = useContext(ColorModeContext);
 
   const drawerOpenHandler = () => {

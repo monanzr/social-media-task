@@ -1,22 +1,26 @@
 import React, { useContext, useMemo } from "react";
 import DataContext from "../context/provider";
+import { useDispatch, useSelector } from "react-redux";
+import { setCollapseOpen } from "../features/collapse/collapseSlice";
 
 const useCollapse = () => {
-  const { collapseOpen, setCollapseOpen } = useContext(DataContext);
+  // const { collapseOpen, setCollapseOpen } = useContext(DataContext);
+
+  const collapseOpenDispatch = useDispatch()
 
   return {
-    getCollapseOpen: useMemo(() => collapseOpen, [collapseOpen]),
+    getCollapseOpen: useSelector(state => state.collapse.collapseOpen),
     
     onCollapseOpen: () => {
-        setCollapseOpen(true)
+      collapseOpenDispatch(setCollapseOpen(true))
     },
 
     onCollapseClose: () => {
-        setCollapseOpen(false)
+      collapseOpenDispatch(setCollapseOpen(false))
     },
 
     toggleOpenForm: () => {
-        setCollapseOpen((prevOpenForm) => !prevOpenForm);
+      collapseOpenDispatch(setCollapseOpen((prevOpenForm) => !prevOpenForm));
       }
   };
 };

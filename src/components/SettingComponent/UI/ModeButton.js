@@ -9,14 +9,6 @@ const ModeButton = styled(Button)(() => {
     height: "4rem",
     padding: "1rem",
     boxShadow: "rgba(0, 0, 0, 0.1) 0px 10px 50px"
-    // '& .MuiSlider-thumb': {
-    //   '&:hover, &.Mui-focusVisible': {
-    //     boxShadow: `0px 0px 0px 8px ${alpha(theme.palette.success.main, 0.16)}`,
-    //   },
-    //   '&.Mui-active': {
-    //     boxShadow: `0px 0px 0px 14px ${alpha(theme.palette.success.main, 0.16)}`,
-    //   },
-    // },
   };
 });
 

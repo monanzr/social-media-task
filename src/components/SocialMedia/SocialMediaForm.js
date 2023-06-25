@@ -21,7 +21,7 @@ import StyledCard from "./UI/StyledCard";
 import { isEmpty } from "../../utils/function.util";
 import getIcon from "../../utils/getIcon";
 import { postSocialMedia } from './../../api/postSocialMedia';
-import putSocialMedia from "../../api/putSocialMedia";
+import {putSocialMedia} from "../../api/putSocialMedia";
 
 const SocialMediaForm = () => {
   const {
@@ -33,17 +33,12 @@ const SocialMediaForm = () => {
   } = useSocialMedia();
 
   const {
-    onCollapseOpen,
     onCollapseClose,
-    toggleOpenForm,
     getCollapseOpen: collapseOpen,
   } = useCollapse();
 
   console.log("collapseOpen", collapseOpen);
 
-  const [count, setCount] = useState(1);
-  // useCallback(() => setCount(count => count + 1)
-  // ,[count])
   let defaultValues = {
     type: "",
     link: "",
@@ -110,8 +105,6 @@ const SocialMediaForm = () => {
   return (
     <div>
       <Collapse in={collapseOpen}>
-        {/* {({ data }) => ( */}
-        {/* () => likeHandler(item) */}
         <form onSubmit={handleSubmit(onSubmit)}>
           <StyledCard>
             <CardHeader
@@ -146,7 +139,6 @@ const SocialMediaForm = () => {
                           {SOCIAL_MEDIA_TYPES[value]}
                         </div>
                       )}
-                      // onChange={handleChange}
                     >
                       <MenuItem value="instagram">
                         <Typography>{SOCIAL_MEDIA_TYPES.instagram}</Typography>
@@ -176,7 +168,6 @@ const SocialMediaForm = () => {
                     error={errors.link}
                     label="لینک"
                     name="link"
-                    // onChange={handleChange}
                     {...register("link", { required: true })}
                   />
                   {errors.link && <span>این فیلد اجباری است</span>}
@@ -187,8 +178,6 @@ const SocialMediaForm = () => {
                     error={errors.socialMediaId}
                     label="(ID) آی دی"
                     name="id"
-                    // value={data.id}
-                    // onChange={handleChange}
                     {...register("socialMediaId", { required: true })}
                   />
                   {errors.socialMediaId && <span>این فیلد اجباری است</span>}
