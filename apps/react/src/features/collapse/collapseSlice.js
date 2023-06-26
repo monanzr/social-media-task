@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const collapseSlice = createSlice({
   name: "collapse",
   initialState: {
-    collapseOpen: false
+    collapseOpen: false,
   },
   reducers: {
     setCollapseOpen: (state, action) => {
@@ -12,7 +12,6 @@ export const collapseSlice = createSlice({
   },
 });
 
-export const { setCollapseOpen} =
-collapseSlice.actions;
+export const { setCollapseOpen } = collapseSlice.actions;
 
 export default collapseSlice.reducer;

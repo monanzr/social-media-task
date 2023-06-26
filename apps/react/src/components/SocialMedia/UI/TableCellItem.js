@@ -2,8 +2,17 @@ import { Box, useTheme } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 const TableCellItem = styled(Box)(() => {
-  const theme = useTheme();
-  return {
+  const {
+    palette: {
+      primary: { gray: grayColor },
+    },
+    palette: {
+      primary: { text: textColor },
+    },
+    palette: {
+      primary: { main: primaryColor },
+    },
+} = useTheme();  return {
     display: 'flex',
     justifyContent: {
       sm: "center",
@@ -13,15 +22,16 @@ const TableCellItem = styled(Box)(() => {
     gap: "10px",
     fontSize: "13px",
     "& span": {
-      color: theme.palette.primary.gray,
+      color: grayColor,
+      fontSize: "13px",
     },
     "& p": {
-        color: theme.palette.primary.text,
+        color: textColor,
         fontSize: "14px",
         direction: "ltr",
     },
     "& a": {
-      color: theme.palette.primary.main,
+      color: primaryColor,
       fontSize: "14px",
     },
   };

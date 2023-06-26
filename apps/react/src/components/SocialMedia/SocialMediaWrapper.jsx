@@ -1,16 +1,21 @@
 import React from "react";
-import { Box, Typography, Button, useTheme, Alert } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import getIcon from "../../utils/getIcon";
 import SocialMediaForm from "./SocialMediaForm";
 import SocialMediaList from "./SocialMediaList";
 import { isEmpty } from "../../utils/function.util";
-import useSocialMedia from "./../../hooks/useSocialMedia";
-import { grid } from "@mui/system";
-import useCollapse from "./../../hooks/useCollapse";
+import useSocialMedia from "../../hooks/useSocialMedia";
+import useCollapse from "../../hooks/useCollapse";
+import { AddOrEditRouthingPathButton } from "./UI/AddOrEditRouthingPathButton";
 
 const SocialMediaWrapper = () => {
-  const theme = useTheme();
   const { getSelectedSocialMedia: selectedSocialMedia } = useSocialMedia();
+
+  const {
+    palette: {
+      secondary: { main: secondaryColor },
+    },
+  } = useTheme();
 
   const { toggleOpenForm } = useCollapse();
 
@@ -19,9 +24,8 @@ const SocialMediaWrapper = () => {
   return (
     <Box
       sx={{
-        background: theme.palette.neutral.dark,
-        boxShadow:
-          "rgba(149, 157, 165, 0.2) 0px 8px 24px;",
+        background: secondaryColor,
+        boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px;",
         padding: 5,
         display: "grid",
         gap: "1rem",
@@ -31,18 +35,14 @@ const SocialMediaWrapper = () => {
       }}
     >
       <Typography>مسیر های ارتباطی</Typography>
-      <Button
+      <AddOrEditRouthingPathButton
         startIcon={getIcon(checkSelectedSocialMediaEmpty ? "add" : "edit")}
-        variant="text"
+        isAdd={checkSelectedSocialMediaEmpty}
         onClick={toggleOpenForm}
-        sx={{ justifyContent: "start", width: "fit-content" }}
-      >
-        {checkSelectedSocialMediaEmpty ? (
-          <Typography>افزودن مسیر ارتباطی</Typography>
-        ) : (
-          <Typography>ویرایش مسیر ارتباطی</Typography>
-        )}
-      </Button>
+        type="submit"
+        variant="text"
+        typeName=""
+      />
       <SocialMediaForm />
       <SocialMediaList />
     </Box>

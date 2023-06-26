@@ -8,38 +8,49 @@ export const socialMediaSlice = createSlice({
     shouldRefetch: false,
   },
   reducers: {
-    listItem: (state, action) => {
-      state.socialMedia = action.payload;
+    listItem: (state, { payload }) => {
+      state.socialMedia = payload;
       state.shouldRefetch = false;
     },
-    selectedItem: (state, action) => {
+    selectedItem: (state, { payload: { id: payloadId } }) => {
       state.selectedSocialMedia = state.socialMedia.find(
-        (t) => t.id === action.payload.id
+        ({ id }) => id === payloadId
       );
     },
-    addItem: (state, action) => {
+    addItem: (state, { payload }) => {
+      const {
+        type: payloadType,
+        link: payloadLink,
+        socialMediaId: payloadSocialMediaId,
+      } = payload;
       const found = state.socialMedia.find(
-        (item) =>
-          item.type === action.payload.type ||
-          item.link === action.payload.link ||
-          item.socialMediaId === action.payload.socialMediaId
+        ({ type, link, socsocialMediaId }) =>
+          type === payloadType ||
+          link === payloadLink ||
+          socsocialMediaId === payloadSocialMediaId
       );
       if (!found) {
-        state.socialMedia = [...state.socialMedia, action.payload];
+        state.socialMedia = [...state.socialMedia, payload];
         state.shouldRefetch = true;
       } else {
         return state;
       }
     },
     removeItem: (state, action) => {
+      const {
+        payload: { id: payloadId },
+      } = action;
       state.socialMedia = state.socialMedia.filter(
-        (item) => item.id !== action.payload.id
+        ({ id }) => id !== payloadId
       );
       state.shouldRefetch = true;
     },
-    editItem: (state, action) => {
+
+    editItem: (state, { payload }) => {
+      const { id: payloadId } = payload;
       state.socialMedia = state.socialMedia.map((item) => {
-        return item.id === action.payload.id ? action.payload : item;
+        const { id } = item;
+        return id === payloadId ? payload : item;
       });
       state.shouldRefetch = true;
     },

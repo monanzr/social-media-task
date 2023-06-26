@@ -1,10 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit'
-import socialMediaReducer from './../features/social-media/socialMediaSlice';
-import collapseReucer from '../features/collapse/collapseSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import socialMediaReducer from "./../features/social-media/socialMediaSlice";
+import collapseReducer from "../features/collapse/collapseSlice";
 
 export default configureStore({
   reducer: {
     socialMedia: socialMediaReducer,
-    collapse: collapseReucer
-  }
-})
+    collapse: collapseReducer,
+  },
+});

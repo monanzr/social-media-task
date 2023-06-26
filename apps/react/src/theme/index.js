@@ -16,11 +16,10 @@ export const themeSettings = (mode) => {
               text: "#fff",
             },
             secondary: {
-              main: "#d32f2f",
+              main: "#212b35",
             },
-            neutral: {
-              dark: "#212b35",
-              gray: "#343d48",
+            tertiary: {
+              main: "#343d48",
             },
             background: {
               default: "#161b25",
@@ -35,11 +34,10 @@ export const themeSettings = (mode) => {
               text: "#000",
             },
             secondary: {
-              main: "##d32f2f",
+              main: "##ffffff",
             },
-            neutral: {
-              dark: "#ffffff",
-              gray: "#f4f6f8",
+            tertiary: {
+              main: "#f4f6f8",
             },
             background: {
               default: "#fff",
@@ -109,8 +107,7 @@ export const useMode = () => {
     }),
     []
   );
-  console.log("mode", mode);
-
+  
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return [theme, colorMode];
 };
